@@ -1,4 +1,4 @@
-﻿
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -345,6 +345,16 @@
 
       if (parts.length > 1) {
         acceptedAnswers.push(parts[parts.length - 1]);
+
+        // Accept compound surnames such as De Bruyne and van Dijk.
+        const surnamePrefixes = ["de", "van", "von", "del", "da", "di", "du"];
+
+        if (
+          parts.length >= 3 &&
+          surnamePrefixes.includes(parts[parts.length - 2].toLowerCase())
+        ) {
+          acceptedAnswers.push(parts.slice(-2).join(" "));
+        }
       }
 
       const normalizedGuess = normalizeAnswer(guess);
