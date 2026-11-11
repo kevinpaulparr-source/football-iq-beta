@@ -1,0 +1,544 @@
+[
+  {
+    "id": "beta-career-wikidata-Q266613",
+    "type": "career-path",
+    "answer": "Wayne Rooney",
+    "playerId": "wikidata-Q266613",
+    "difficulty": "balanced",
+    "clues": [
+      "This player represented Everton and Derby County.",
+      "Another club in their career was D.C. United.",
+      "Their career included: Everton ? Manchester United ? Everton ? D.C. United ? Derby County."
+    ],
+    "clueLevels": [
+      {
+        "level": "hard",
+        "points": 100
+      },
+      {
+        "level": "medium",
+        "points": 70
+      },
+      {
+        "level": "easy",
+        "points": 40
+      }
+    ],
+    "career": [
+      "Everton",
+      "Manchester United",
+      "Everton",
+      "D.C. United",
+      "Derby County"
+    ],
+    "verified": true,
+    "status": "APPROVED"
+  },
+  {
+    "id": "beta-career-wikidata-Q41533",
+    "type": "career-path",
+    "answer": "Frank Lampard",
+    "playerId": "wikidata-Q41533",
+    "difficulty": "balanced",
+    "clues": [
+      "This player represented West Ham United and New York City FC.",
+      "Another club in their career was Chelsea.",
+      "Their career included: West Ham United ? Swansea City ? Chelsea ? Manchester City ? New York City FC."
+    ],
+    "clueLevels": [
+      {
+        "level": "hard",
+        "points": 100
+      },
+      {
+        "level": "medium",
+        "points": 70
+      },
+      {
+        "level": "easy",
+        "points": 40
+      }
+    ],
+    "career": [
+      "West Ham United",
+      "Swansea City",
+      "Chelsea",
+      "Manchester City",
+      "New York City FC"
+    ],
+    "verified": true,
+    "status": "APPROVED"
+  },
+  {
+    "id": "beta-career-wikidata-Q1354960",
+    "type": "career-path",
+    "answer": "Mohamed Salah",
+    "playerId": "wikidata-Q1354960",
+    "difficulty": "balanced",
+    "clues": [
+      "This player represented Al Mokawloon and Liverpool.",
+      "Another club in their career was Fiorentina.",
+      "Their career included: Al Mokawloon ? Basel ? Chelsea ? Fiorentina ? Roma ? Liverpool."
+    ],
+    "clueLevels": [
+      {
+        "level": "hard",
+        "points": 100
+      },
+      {
+        "level": "medium",
+        "points": 70
+      },
+      {
+        "level": "easy",
+        "points": 40
+      }
+    ],
+    "career": [
+      "Al Mokawloon",
+      "Basel",
+      "Chelsea",
+      "Fiorentina",
+      "Roma",
+      "Liverpool"
+    ],
+    "verified": true,
+    "status": "APPROVED"
+  },
+  {
+    "id": "beta-career-wikidata-Q209942",
+    "type": "career-path",
+    "answer": "Sadio Mané",
+    "playerId": "wikidata-Q209942",
+    "difficulty": "balanced",
+    "clues": [
+      "This player represented Metz and Al-Nassr.",
+      "Another club in their career was Liverpool.",
+      "Their career included: Metz ? Red Bull Salzburg ? Southampton ? Liverpool ? Bayern Munich ? Al-Nassr."
+    ],
+    "clueLevels": [
+      {
+        "level": "hard",
+        "points": 100
+      },
+      {
+        "level": "medium",
+        "points": 70
+      },
+      {
+        "level": "easy",
+        "points": 40
+      }
+    ],
+    "career": [
+      "Metz",
+      "Red Bull Salzburg",
+      "Southampton",
+      "Liverpool",
+      "Bayern Munich",
+      "Al-Nassr"
+    ],
+    "verified": true,
+    "status": "APPROVED"
+  },
+  {
+    "id": "beta-career-wikidata-Q357984",
+    "type": "career-path",
+    "answer": "Kevin De Bruyne",
+    "playerId": "wikidata-Q357984",
+    "difficulty": "balanced",
+    "clues": [
+      "This player represented Genk and Napoli.",
+      "Another club in their career was Wolfsburg.",
+      "Their career included: Genk ? Werder Bremen ? Chelsea ? Wolfsburg ? Manchester City ? Napoli."
+    ],
+    "clueLevels": [
+      {
+        "level": "hard",
+        "points": 100
+      },
+      {
+        "level": "medium",
+        "points": 70
+      },
+      {
+        "level": "easy",
+        "points": 40
+      }
+    ],
+    "career": [
+      "Genk",
+      "Werder Bremen",
+      "Chelsea",
+      "Wolfsburg",
+      "Manchester City",
+      "Napoli"
+    ],
+    "verified": true,
+    "status": "APPROVED"
+  },
+  {
+    "id": "beta-career-wikidata-Q201381",
+    "type": "career-path",
+    "answer": "Vincent Kompany",
+    "playerId": "wikidata-Q201381",
+    "difficulty": "balanced",
+    "clues": [
+      "This player represented Anderlecht and Manchester City.",
+      "Another club in their career was Hamburg.",
+      "Their career included: Anderlecht ? Hamburg ? Manchester City ? Anderlecht."
+    ],
+    "clueLevels": [
+      {
+        "level": "hard",
+        "points": 100
+      },
+      {
+        "level": "medium",
+        "points": 70
+      },
+      {
+        "level": "easy",
+        "points": 40
+      }
+    ],
+    "career": [
+      "Anderlecht",
+      "Hamburg",
+      "Manchester City",
+      "Anderlecht"
+    ],
+    "verified": true,
+    "status": "APPROVED"
+  },
+  {
+    "id": "beta-career-wikidata-Q17499",
+    "type": "career-path",
+    "answer": "Cesc Fàbregas",
+    "playerId": "wikidata-Q17499",
+    "difficulty": "balanced",
+    "clues": [
+      "This player represented Arsenal and Como.",
+      "Another club in their career was Chelsea.",
+      "Their career included: Arsenal ? Barcelona ? Chelsea ? Monaco ? Como."
+    ],
+    "clueLevels": [
+      {
+        "level": "hard",
+        "points": 100
+      },
+      {
+        "level": "medium",
+        "points": 70
+      },
+      {
+        "level": "easy",
+        "points": 40
+      }
+    ],
+    "career": [
+      "Arsenal",
+      "Barcelona",
+      "Chelsea",
+      "Monaco",
+      "Como"
+    ],
+    "verified": true,
+    "status": "APPROVED"
+  },
+  {
+    "id": "beta-career-wikidata-Q180553",
+    "type": "career-path",
+    "answer": "Alexis Sánchez",
+    "playerId": "wikidata-Q180553",
+    "difficulty": "balanced",
+    "clues": [
+      "This player represented Cobreloa and Marseille.",
+      "Another club in their career was Barcelona.",
+      "Their career included: Cobreloa ? Udinese ? Colo-Colo ? River Plate ? Barcelona ? Arsenal ? Manchester United ? Inter Milan ? Marseille."
+    ],
+    "clueLevels": [
+      {
+        "level": "hard",
+        "points": 100
+      },
+      {
+        "level": "medium",
+        "points": 70
+      },
+      {
+        "level": "easy",
+        "points": 40
+      }
+    ],
+    "career": [
+      "Cobreloa",
+      "Udinese",
+      "Colo-Colo",
+      "River Plate",
+      "Barcelona",
+      "Arsenal",
+      "Manchester United",
+      "Inter Milan",
+      "Marseille"
+    ],
+    "verified": true,
+    "status": "APPROVED"
+  },
+  {
+    "id": "beta-career-wikidata-Q313316",
+    "type": "career-path",
+    "answer": "Romelu Lukaku",
+    "playerId": "wikidata-Q313316",
+    "difficulty": "balanced",
+    "clues": [
+      "This player represented Anderlecht and Napoli.",
+      "Another club in their career was Manchester United.",
+      "Their career included: Anderlecht ? Chelsea ? West Bromwich Albion ? Everton ? Manchester United ? Inter Milan ? Chelsea ? Roma ? Napoli."
+    ],
+    "clueLevels": [
+      {
+        "level": "hard",
+        "points": 100
+      },
+      {
+        "level": "medium",
+        "points": 70
+      },
+      {
+        "level": "easy",
+        "points": 40
+      }
+    ],
+    "career": [
+      "Anderlecht",
+      "Chelsea",
+      "West Bromwich Albion",
+      "Everton",
+      "Manchester United",
+      "Inter Milan",
+      "Chelsea",
+      "Roma",
+      "Napoli"
+    ],
+    "verified": true,
+    "status": "APPROVED"
+  },
+  {
+    "id": "beta-career-wikidata-Q44977",
+    "type": "career-path",
+    "answer": "Pierre-Emerick Aubameyang",
+    "playerId": "wikidata-Q44977",
+    "difficulty": "balanced",
+    "clues": [
+      "This player represented AC Milan and Marseille.",
+      "Another club in their career was Borussia Dortmund.",
+      "Their career included: AC Milan ? Dijon ? Lille ? Monaco ? Saint-Étienne ? Borussia Dortmund ? Arsenal ? Barcelona ? Chelsea ? Marseille."
+    ],
+    "clueLevels": [
+      {
+        "level": "hard",
+        "points": 100
+      },
+      {
+        "level": "medium",
+        "points": 70
+      },
+      {
+        "level": "easy",
+        "points": 40
+      }
+    ],
+    "career": [
+      "AC Milan",
+      "Dijon",
+      "Lille",
+      "Monaco",
+      "Saint-Étienne",
+      "Borussia Dortmund",
+      "Arsenal",
+      "Barcelona",
+      "Chelsea",
+      "Marseille"
+    ],
+    "verified": true,
+    "status": "APPROVED"
+  },
+  {
+    "id": "beta-career-wikidata-Q1911",
+    "type": "career-path",
+    "answer": "Olivier Giroud",
+    "playerId": "wikidata-Q1911",
+    "difficulty": "balanced",
+    "clues": [
+      "This player represented Grenoble and Los Angeles FC.",
+      "Another club in their career was Arsenal.",
+      "Their career included: Grenoble ? Istres ? Tours ? Montpellier ? Arsenal ? Chelsea ? AC Milan ? Los Angeles FC."
+    ],
+    "clueLevels": [
+      {
+        "level": "hard",
+        "points": 100
+      },
+      {
+        "level": "medium",
+        "points": 70
+      },
+      {
+        "level": "easy",
+        "points": 40
+      }
+    ],
+    "career": [
+      "Grenoble",
+      "Istres",
+      "Tours",
+      "Montpellier",
+      "Arsenal",
+      "Chelsea",
+      "AC Milan",
+      "Los Angeles FC"
+    ],
+    "verified": true,
+    "status": "APPROVED"
+  },
+  {
+    "id": "beta-career-wikidata-Q483137",
+    "type": "career-path",
+    "answer": "Petr Čech",
+    "playerId": "wikidata-Q483137",
+    "difficulty": "balanced",
+    "clues": [
+      "This player represented Chmel Blšany and Arsenal.",
+      "Another club in their career was Rennes.",
+      "Their career included: Chmel Blšany ? Sparta Prague ? Rennes ? Chelsea ? Arsenal."
+    ],
+    "clueLevels": [
+      {
+        "level": "hard",
+        "points": 100
+      },
+      {
+        "level": "medium",
+        "points": 70
+      },
+      {
+        "level": "easy",
+        "points": 40
+      }
+    ],
+    "career": [
+      "Chmel Blšany",
+      "Sparta Prague",
+      "Rennes",
+      "Chelsea",
+      "Arsenal"
+    ],
+    "verified": true,
+    "status": "APPROVED"
+  },
+  {
+    "id": "beta-career-wikidata-Q150268",
+    "type": "career-path",
+    "answer": "David de Gea",
+    "playerId": "wikidata-Q150268",
+    "difficulty": "balanced",
+    "clues": [
+      "This player represented Atlético Madrid and Fiorentina.",
+      "Another club in their career was Manchester United.",
+      "Their career included: Atlético Madrid ? Manchester United ? Fiorentina."
+    ],
+    "clueLevels": [
+      {
+        "level": "hard",
+        "points": 100
+      },
+      {
+        "level": "medium",
+        "points": 70
+      },
+      {
+        "level": "easy",
+        "points": 40
+      }
+    ],
+    "career": [
+      "Atlético Madrid",
+      "Manchester United",
+      "Fiorentina"
+    ],
+    "verified": true,
+    "status": "APPROVED"
+  },
+  {
+    "id": "beta-career-wikidata-Q163564",
+    "type": "career-path",
+    "answer": "Nemanja Vidić",
+    "playerId": "wikidata-Q163564",
+    "difficulty": "balanced",
+    "clues": [
+      "This player represented Spartak Subotica and Inter Milan.",
+      "Another club in their career was Spartak Moscow.",
+      "Their career included: Spartak Subotica ? Red Star Belgrade ? Spartak Moscow ? Manchester United ? Inter Milan."
+    ],
+    "clueLevels": [
+      {
+        "level": "hard",
+        "points": 100
+      },
+      {
+        "level": "medium",
+        "points": 70
+      },
+      {
+        "level": "easy",
+        "points": 40
+      }
+    ],
+    "career": [
+      "Spartak Subotica",
+      "Red Star Belgrade",
+      "Spartak Moscow",
+      "Manchester United",
+      "Inter Milan"
+    ],
+    "verified": true,
+    "status": "APPROVED"
+  },
+  {
+    "id": "beta-career-wikidata-Q11571",
+    "type": "career-path",
+    "answer": "Cristiano Ronaldo",
+    "playerId": "wikidata-Q11571",
+    "difficulty": "balanced",
+    "clues": [
+      "This player represented Sporting CP and Al-Nassr.",
+      "Another club in their career was Real Madrid.",
+      "Their career included: Sporting CP ? Manchester United ? Real Madrid ? Juventus ? Manchester United ? Al-Nassr."
+    ],
+    "clueLevels": [
+      {
+        "level": "hard",
+        "points": 100
+      },
+      {
+        "level": "medium",
+        "points": 70
+      },
+      {
+        "level": "easy",
+        "points": 40
+      }
+    ],
+    "career": [
+      "Sporting CP",
+      "Manchester United",
+      "Real Madrid",
+      "Juventus",
+      "Manchester United",
+      "Al-Nassr"
+    ],
+    "verified": true,
+    "status": "APPROVED"
+  }
+]

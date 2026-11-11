@@ -1,0 +1,841 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Football IQ — Daily Challenge</title>
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 24px;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background: #0b1728;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .game {
+      width: 100%;
+      max-width: 600px;
+      padding: 30px;
+      background: #14253b;
+      border: 1px solid #29425e;
+      border-radius: 18px;
+    }
+
+    h1 {
+      margin-top: 0;
+      text-align: center;
+      color: #63e6a3;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #b8c8d9;
+      margin-bottom: 20px;
+    }
+
+    .date {
+      text-align: center;
+      color: #b8c8d9;
+      margin-bottom: 24px;
+      font-size: 14px;
+    }
+
+    .stats {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 24px;
+      font-weight: bold;
+    }
+
+    .clue-box {
+      background: #203650;
+      border-radius: 12px;
+      padding: 22px;
+      margin-bottom: 20px;
+      min-height: 150px;
+    }
+
+    .points {
+      color: #63e6a3;
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+
+    .clue {
+      font-size: 20px;
+      line-height: 1.5;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      font-size: 17px;
+      border: 1px solid #49647e;
+      border-radius: 10px;
+      margin-bottom: 12px;
+    }
+
+    button {
+      padding: 14px 18px;
+      border: none;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .primary {
+      background: #63e6a3;
+      color: #092018;
+    }
+
+    .secondary {
+      background: #304d6c;
+      color: white;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .buttons button {
+      flex: 1;
+    }
+
+    .feedback {
+      min-height: 42px;
+      margin-top: 18px;
+      font-weight: bold;
+      line-height: 1.5;
+    }
+
+    .hidden { display: none; }
+    .error { color: #ff9e9e; }
+    .success { color: #63e6a3; }
+    .info { color: #b8c8d9; }
+
+    .results {
+      text-align: center;
+      line-height: 1.8;
+    }
+
+    .results h2 {
+      color: #63e6a3;
+    }
+
+    .dev-tools {
+      margin-top: 28px;
+      padding-top: 18px;
+      border-top: 1px solid #29425e;
+      text-align: center;
+    }
+
+    .dev-tools p {
+      color: #8fa5bb;
+      font-size: 12px;
+    }
+
+    .reset-button {
+      background: transparent;
+      color: #b8c8d9;
+      border: 1px solid #49647e;
+      font-size: 12px;
+    }
+
+    @media (max-width: 480px) {
+      body { padding: 12px; }
+      .game { padding: 20px; }
+      .clue { font-size: 18px; }
+      .buttons { flex-direction: column; }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="game">
+    <h1>⚽ FOOTBALL IQ</h1>
+    <p class="subtitle">Daily Career Path Challenge</p>
+
+    <div id="challengeDate" class="date"></div>
+
+    <div id="loading">
+      Loading today's approved questions...
+    </div>
+
+    <div id="playArea" class="hidden">
+      <div class="stats">
+        <span id="progress"></span>
+        <span id="score"></span>
+      </div>
+
+      <div class="clue-box">
+        <div class="points" id="points"></div>
+        <div class="clue" id="clue"></div>
+      </div>
+
+      <input
+        id="answer"
+        type="text"
+        placeholder="Enter the player's name"
+        autocomplete="off"
+      >
+
+      <div class="buttons">
+        <button
+          id="submitButton"
+          class="primary"
+          onclick="submitAnswer()"
+        >
+          Submit Answer
+        </button>
+
+        <button
+          id="clueButton"
+          class="secondary"
+          onclick="nextClue()"
+        >
+          Reveal Next Clue
+        </button>
+      </div>
+
+      <div id="feedback" class="feedback"></div>
+
+      <button
+        id="nextButton"
+        class="primary hidden"
+        onclick="nextQuestion()"
+        style="width:100%; margin-top:12px;"
+      >
+        Next Question
+      </button>
+    </div>
+
+    <div id="results" class="results hidden">
+      <h2>Daily Challenge Complete!</h2>
+      <p id="finalScore"></p>
+      <p id="correctCount"></p>
+      <p class="info">
+        Come back tomorrow for a new challenge!
+      </p>
+    </div>
+
+    <div class="dev-tools">
+      <p>Development testing only</p>
+
+      <button
+        class="reset-button"
+        onclick="resetDailyProgress()"
+      >
+        Reset Today's Progress
+      </button>
+    </div>
+  </main>
+
+  <script>
+    let questions = [];
+    let questionIndex = 0;
+    let clueIndex = 0;
+    let totalScore = 0;
+    let correctAnswers = 0;
+    let questionFinished = false;
+    let challengeCompleted = false;
+
+    let dateKey = "";
+    let storageKey = "";
+
+    const pointsByClue = [100, 70, 40];
+    const DAILY_QUESTION_COUNT = 5;
+
+    const answerAliases = {
+      276: [
+        "Neymar",
+        "Neymar Jr",
+        "Neymar Junior"
+      ],
+      278: [
+        "Mbappe",
+        "Kylian Mbappe",
+        "Kylian MbappÃ©"
+      ]
+    };
+
+    function normalizeAnswer(value) {
+      return value
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-z0-9]/g, "");
+    }
+
+    function editDistance(a, b) {
+      const previous = Array.from(
+        { length: b.length + 1 },
+        (_, i) => i
+      );
+
+      for (let i = 1; i <= a.length; i++) {
+        const current = [i];
+
+        for (let j = 1; j <= b.length; j++) {
+          current[j] = Math.min(
+            current[j - 1] + 1,
+            previous[j] + 1,
+            previous[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1)
+          );
+        }
+
+        for (let j = 0; j < current.length; j++) {
+          previous[j] = current[j];
+        }
+      }
+
+      return previous[b.length];
+    }
+
+    function editDistance(a, b) {
+      const previous = Array.from(
+        { length: b.length + 1 },
+        (_, i) => i
+      );
+
+      for (let i = 1; i <= a.length; i++) {
+        const current = [i];
+
+        for (let j = 1; j <= b.length; j++) {
+          current[j] = Math.min(
+            current[j - 1] + 1,
+            previous[j] + 1,
+            previous[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1)
+          );
+        }
+
+        for (let j = 0; j < current.length; j++) {
+          previous[j] = current[j];
+        }
+      }
+
+      return previous[b.length];
+    }
+
+    function isCorrectAnswer(guess, question) {
+      const acceptedAnswers = [
+        question.answer,
+        ...(answerAliases[question.playerId] || [])
+      ];
+
+      const parts = question.answer.trim().split(/\s+/);
+
+      if (parts.length > 1) {
+        acceptedAnswers.push(parts[parts.length - 1]);
+      }
+
+      const normalizedGuess = normalizeAnswer(guess);
+
+      if (!normalizedGuess) {
+        return false;
+      }
+
+      return acceptedAnswers.some(accepted => {
+        const normalizedAccepted = normalizeAnswer(accepted);
+
+        if (normalizedGuess === normalizedAccepted) {
+          return true;
+        }
+
+        // Allow one typo for names of at least six characters.
+        return normalizedGuess.length >= 6 &&
+          normalizedAccepted.length >= 6 &&
+          editDistance(normalizedGuess, normalizedAccepted) <= 1;
+      });
+    }
+
+    function getTodayKey() {
+      return new Date().toISOString().slice(0, 10);
+    }
+
+    function createSeed(text) {
+      let seed = 2166136261;
+
+      for (let i = 0; i < text.length; i++) {
+        seed ^= text.charCodeAt(i);
+        seed = Math.imul(seed, 16777619);
+      }
+
+      return seed >>> 0;
+    }
+
+    function seededRandom(seed) {
+      let state = seed >>> 0;
+
+      return function() {
+        state += 0x6D2B79F5;
+
+        let value = state;
+
+        value = Math.imul(
+          value ^ (value >>> 15),
+          value | 1
+        );
+
+        value ^= value + Math.imul(
+          value ^ (value >>> 7),
+          value | 61
+        );
+
+        return (
+          (value ^ (value >>> 14)) >>> 0
+        ) / 4294967296;
+      };
+    }
+
+    function selectDailyQuestions(allQuestions, day) {
+      const sorted = [...allQuestions].sort(
+        (a, b) =>
+          String(a.id).localeCompare(String(b.id))
+      );
+
+      const seenPlayers = new Set();
+
+      const unique = sorted.filter(question => {
+        const playerKey = String(question.playerId);
+
+        if (seenPlayers.has(playerKey)) {
+          return false;
+        }
+
+        seenPlayers.add(playerKey);
+        return true;
+      });
+
+      const random = seededRandom(createSeed(day));
+
+      for (let i = unique.length - 1; i > 0; i--) {
+        const j = Math.floor(random() * (i + 1));
+
+        [unique[i], unique[j]] =
+          [unique[j], unique[i]];
+      }
+
+      return unique.slice(0, DAILY_QUESTION_COUNT);
+    }
+
+    function saveProgress() {
+      const progress = {
+        dateKey,
+        questionIds: questions.map(question => question.id),
+        questionIndex,
+        clueIndex,
+        totalScore,
+        correctAnswers,
+        questionFinished,
+        challengeCompleted,
+        lastFeedback:
+          document.getElementById("feedback").textContent,
+        feedbackClass:
+          document.getElementById("feedback").className
+      };
+
+      try {
+        localStorage.setItem(
+          storageKey,
+          JSON.stringify(progress)
+        );
+      } catch (error) {
+        console.warn(
+          "Could not save progress:",
+          error.message
+        );
+      }
+    }
+
+    function restoreProgress() {
+      let saved;
+
+      try {
+        const raw = localStorage.getItem(storageKey);
+
+        if (!raw) {
+          return false;
+        }
+
+        saved = JSON.parse(raw);
+      } catch (error) {
+        return false;
+      }
+
+      if (!saved || saved.dateKey !== dateKey) {
+        return false;
+      }
+
+      // Do not restore progress for a different set
+      // of questions.
+      const currentIds = questions.map(
+        question => question.id
+      );
+
+      if (
+        JSON.stringify(saved.questionIds) !==
+        JSON.stringify(currentIds)
+      ) {
+        return false;
+      }
+
+      if (
+        !Number.isInteger(saved.questionIndex) ||
+        saved.questionIndex < 0 ||
+        saved.questionIndex > questions.length ||
+        !Number.isInteger(saved.clueIndex) ||
+        saved.clueIndex < 0 ||
+        saved.clueIndex > 2 ||
+        !Number.isInteger(saved.totalScore) ||
+        saved.totalScore < 0 ||
+        !Number.isInteger(saved.correctAnswers) ||
+        saved.correctAnswers < 0 ||
+        saved.correctAnswers > questions.length ||
+        typeof saved.questionFinished !== "boolean" ||
+        typeof saved.challengeCompleted !== "boolean"
+      ) {
+        return false;
+      }
+
+      questionIndex = saved.questionIndex;
+      clueIndex = saved.clueIndex;
+      totalScore = saved.totalScore;
+      correctAnswers = saved.correctAnswers;
+      questionFinished = saved.questionFinished;
+      challengeCompleted = saved.challengeCompleted;
+
+      return saved;
+    }
+
+    async function loadQuestions() {
+      const loading =
+        document.getElementById("loading");
+
+      dateKey = getTodayKey();
+      storageKey = `football-iq-v7-${dateKey}`;
+
+      document.getElementById("challengeDate").textContent =
+        `Daily Challenge — ${dateKey} (UTC)`;
+
+      try {
+        const response = await fetch(
+          "./beta-questions.json",
+          { cache: "no-store" }
+        );
+
+        if (!response.ok) {
+          throw new Error(
+            "Could not load beta-questions.json"
+          );
+        }
+
+        const data = await response.json();
+
+        if (!Array.isArray(data)) {
+          throw new Error(
+            "Approved questions must be an array."
+          );
+        }
+
+        const approved = data.filter(question =>
+          question.verified === true &&
+          question.status === "APPROVED" &&
+          Array.isArray(question.clues) &&
+          question.clues.length === 3
+        );
+
+        questions = selectDailyQuestions(
+          approved,
+          dateKey
+        );
+
+        if (questions.length === 0) {
+          throw new Error(
+            "No approved questions found."
+          );
+        }
+
+        loading.classList.add("hidden");
+
+        const saved = restoreProgress();
+
+        if (saved && challengeCompleted) {
+          showResults();
+          return;
+        }
+
+        document.getElementById("playArea")
+          .classList.remove("hidden");
+
+        if (saved && questionIndex < questions.length) {
+          showQuestion(true, saved);
+        } else {
+          questionIndex = 0;
+          clueIndex = 0;
+          totalScore = 0;
+          correctAnswers = 0;
+          questionFinished = false;
+          challengeCompleted = false;
+
+          showQuestion();
+          saveProgress();
+        }
+
+      } catch (error) {
+        loading.textContent =
+          "Unable to load today's questions. Details: " +
+          error.message;
+      }
+    }
+
+    function updateScore() {
+      document.getElementById("score").textContent =
+        `Score: ${totalScore}`;
+    }
+
+    function showQuestion(restoring = false, saved = null) {
+      if (!restoring) {
+        questionFinished = false;
+        clueIndex = 0;
+      }
+
+      document.getElementById("progress").textContent =
+        `Question ${questionIndex + 1} of ${questions.length}`;
+
+      updateScore();
+
+      const answerInput =
+        document.getElementById("answer");
+
+      answerInput.value = "";
+      answerInput.disabled = questionFinished;
+
+      document.getElementById("submitButton")
+        .disabled = questionFinished;
+
+      document.getElementById("clueButton")
+        .disabled = questionFinished || clueIndex === 2;
+
+      const feedback =
+        document.getElementById("feedback");
+
+      feedback.textContent =
+        restoring && saved ? saved.lastFeedback || "" : "";
+
+      feedback.className =
+        restoring && saved
+          ? saved.feedbackClass || "feedback"
+          : "feedback";
+
+      const nextButton =
+        document.getElementById("nextButton");
+
+      nextButton.classList.add("hidden");
+
+      if (questionFinished) {
+        nextButton.textContent =
+          questionIndex === questions.length - 1
+            ? "View Results"
+            : "Next Question";
+
+        nextButton.classList.remove("hidden");
+      }
+
+      showClue();
+
+      if (!questionFinished) {
+        answerInput.focus();
+      }
+    }
+
+    function showClue() {
+      const question = questions[questionIndex];
+
+      document.getElementById("points").textContent =
+        `${pointsByClue[clueIndex]} POINTS`;
+
+      document.getElementById("clue").textContent =
+        question.clues[clueIndex];
+
+      document.getElementById("clueButton").disabled =
+        clueIndex === 2 || questionFinished;
+    }
+
+    function nextClue() {
+      if (questionFinished || clueIndex >= 2) {
+        return;
+      }
+
+      clueIndex++;
+      showClue();
+
+      const feedback =
+        document.getElementById("feedback");
+
+      feedback.textContent =
+        "Next clue revealed. Available points reduced.";
+
+      feedback.className = "feedback info";
+
+      saveProgress();
+
+      document.getElementById("answer").focus();
+    }
+
+    function submitAnswer() {
+      if (questionFinished) {
+        return;
+      }
+
+      const question = questions[questionIndex];
+
+      const answerInput =
+        document.getElementById("answer");
+
+      const feedback =
+        document.getElementById("feedback");
+
+      const guess = answerInput.value.trim();
+
+      if (!guess) {
+        feedback.textContent =
+          "Please enter a player's name.";
+
+        feedback.className = "feedback error";
+        return;
+      }
+
+      if (isCorrectAnswer(guess, question)) {
+        const points = pointsByClue[clueIndex];
+
+        totalScore += points;
+        correctAnswers++;
+
+        feedback.textContent =
+          `Correct! ${question.answer} — +${points} points.`;
+
+        feedback.className = "feedback success";
+      } else {
+        feedback.textContent =
+          `Incorrect. The correct answer was ${question.answer}. ` +
+          "You earned 0 points for this question.";
+
+        feedback.className = "feedback error";
+      }
+
+      finishQuestion();
+    }
+
+    function finishQuestion() {
+      questionFinished = true;
+
+      document.getElementById("answer")
+        .disabled = true;
+
+      document.getElementById("submitButton")
+        .disabled = true;
+
+      document.getElementById("clueButton")
+        .disabled = true;
+
+      updateScore();
+
+      const nextButton =
+        document.getElementById("nextButton");
+
+      nextButton.textContent =
+        questionIndex === questions.length - 1
+          ? "View Results"
+          : "Next Question";
+
+      nextButton.classList.remove("hidden");
+
+      saveProgress();
+    }
+
+    function nextQuestion() {
+      if (!questionFinished) {
+        return;
+      }
+
+      questionIndex++;
+
+      if (questionIndex >= questions.length) {
+        challengeCompleted = true;
+        saveProgress();
+        showResults();
+      } else {
+        showQuestion();
+        saveProgress();
+      }
+    }
+
+    function showResults() {
+      document.getElementById("playArea")
+        .classList.add("hidden");
+
+      document.getElementById("results")
+        .classList.remove("hidden");
+
+      document.getElementById("finalScore")
+        .textContent =
+          `Final Score: ${totalScore} / ${questions.length * 100}`;
+
+      document.getElementById("correctCount")
+        .textContent =
+          `Correct Answers: ${correctAnswers} / ${questions.length}`;
+    }
+
+    function resetDailyProgress() {
+      const confirmed = confirm(
+        "Reset today's challenge progress? " +
+        "This is for development testing only."
+      );
+
+      if (!confirmed) {
+        return;
+      }
+
+      try {
+        localStorage.removeItem(storageKey);
+      } catch (error) {
+        console.warn(
+          "Could not clear progress:",
+          error.message
+        );
+      }
+
+      window.location.reload();
+    }
+
+    document.getElementById("answer")
+      .addEventListener("keydown", event => {
+        if (event.key === "Enter") {
+          submitAnswer();
+        }
+      });
+
+    loadQuestions();
+  </script>
+</body>
+</html>
+
